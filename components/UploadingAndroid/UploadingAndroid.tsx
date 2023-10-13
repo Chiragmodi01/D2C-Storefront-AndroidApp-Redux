@@ -1,0 +1,64 @@
+/* eslint-disable react-native/no-inline-styles */
+
+import {Image, Text, StyleSheet, View, TouchableOpacity} from 'react-native';
+import {BlurView} from '@react-native-community/blur';
+
+import ProgressBar from '../ProgressBar/ProgressBar';
+import React from 'react';
+
+export function UploadingAndroid({image, progress}) {
+  return (
+    <View
+      style={[
+        StyleSheet.absoluteFill,
+        {
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 1,
+        },
+      ]}>
+      <BlurView
+        style={{
+          width: '70%',
+        }}
+        blurType="dark">
+        <View
+          style={{
+            alignItems: 'center',
+            paddingVertical: 10,
+            rowGap: 12,
+            borderRadius: 14,
+            backgroundColor: '#FFFFFF',
+          }}>
+          {image && (
+            <Image
+              source={{uri: image}}
+              style={{
+                width: 100,
+                height: 100,
+                resizeMode: 'contain',
+                borderRadius: 6,
+              }}
+            />
+          )}
+
+          <Text style={{fontSize: 12}}>Uploading...</Text>
+          <ProgressBar progress={progress} />
+          <View
+            style={{
+              height: 1,
+              borderWidth: StyleSheet.hairlineWidth,
+              width: '100%',
+              borderColor: '#00000020',
+            }}
+          />
+          <TouchableOpacity>
+            <Text style={{fontWeight: '500', color: '#3478F6', fontSize: 17}}>
+              Cancel
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </BlurView>
+    </View>
+  );
+}
